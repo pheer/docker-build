@@ -1,0 +1,16 @@
+ARG SPARK_VERSION
+FROM psheer/spark-base:${SPARK_VERSION}
+
+LABEL maintainer="PHeer"
+
+COPY master.sh /
+
+ENV SPARK_MASTER_PORT 7077
+ENV SPARK_MASTER_WEBUI_PORT 8080
+ENV SPARK_MASTER_LOG /spark/logs
+ENV PYSPARK_PYTHON "/usr/bin/python3"
+ENV PYSPARK_DRIVER_PYTHON "/usr/bin/python3"
+
+EXPOSE 8080 7077 6066
+
+CMD ["/bin/bash", "/master.sh"]
